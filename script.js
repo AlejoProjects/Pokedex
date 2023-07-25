@@ -1,15 +1,65 @@
+class pokemones {
+    constructor(tname,tabilities,tweight,theight,tweakness,timage){
+        this.name = tname;
+        this.abilities = tabilities;
+        this.weight = tweight;
+        this.height = theight;
+        this.weakness = tweakness;
+        this.image = timage
+    }
+    get rname(){
+        return this.name;
+    }
+    get rabilities(){
+        return this.abilities;
+    }
+    get rweight(){
+        return this.weight;
+    }
+
+    get rheight(){
+        return this.height;
+    }
+    get rweakness(){
+        return this.weakness;
+    };
+    get rimage(){
+        return this.image;
+    }
+    set rname(n){
+        this.name = n;
+    };
+    
+    set rabilities(ab){
+        this.abilities = ab;
+    };
+    set rweight(w){
+        this.weight = w;
+    };
+    set rheight(h){
+        this.height = h;
+    };
+     set rweakness(wk){
+        this.weakness = wk;
+    };
+    set rimage(im){
+        this.image = im;
+    }
+};
 let createCardInfo = (number, info) => {
     /**Esta función recibe un numero correspondiente al numero de la carta del html (del 1 al 9) y la información correspondiente.
      * Con el array info asigna la información de el poquemon relacionado a cada elemento designado.(ej name: bulbasaur u así para las otras propiedades.)
      */
-    let card = document.getElementById("card_"+number);
+    let carta = document.getElementById("card_"+number);
+    let modal = document.getElementById("modal_"+number);
     let cardInfo = document.getElementById("card_info_"+number);
     let cardImage = document.createElement("img");
     cardInfo.className ="card_info";
     cardImage.id = "card_image"+number;
     cardImage.className = "card_image";
     cardImage.src = info[5];
-    card.insertBefore(cardImage,cardInfo);
+    carta.insertBefore(cardImage,modal);
+    modal.appendChild(cardInfo);
     //Elementos de la izquierda
     const pNameIdentifier = document.createElement("p");
     const pAbilityIdentifier = document.createElement("p");
@@ -53,20 +103,33 @@ let createCardInfo = (number, info) => {
     );
 };
 
-let callPagePokemons = () => {
+let getPokemonInfo = (init,limit) => {
     fetch("/pokemons.json")
         .then((response) => response.json())
         .then((data) => {
-        for(let i = 1;i < 10; i++){
+        let counter = 1;
+        let pokemonContainer = Array(9);
+        for(let i = init;i < limit; i++){
+            console.log(i);
             const pokemon = data[i];
-            const information = [pokemon.name,pokemon.abilities,pokemon.weight,pokemon.height,pokemon.weakness[0],pokemon.ThumbnailImage];
-            createCardInfo(i,information);
-          }
-          
-           
+            pokemonContainer[counter] =  new pokemones(pokemon.name,pokemon.abilities,pokemon.weight,pokemon.height,pokemon.weakness[0],pokemon.ThumbnailImage);
+            counter+=1;
+          } 
+        console.log(pokemonContainer);
+        createCardPack(pokemonContainer);
+
         })
         .catch((error) => {
             console.error(error);
         });
 };
-callPagePokemons();
+createCardPack = (pokemonPack) => {
+    //llama la info de los pokemones actuales, luego manda la info para crear una carta.
+    for(i in pokemonPack){
+        const p = pokemonPack[i]
+        let info = [p.name,p.abilities,p.weight,p.height,p.weakness,p.image];
+        createCardInfo(i,info);
+    }
+};
+
+getPokemonInfo(20,29);
