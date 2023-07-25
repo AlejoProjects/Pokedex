@@ -1,0 +1,38 @@
+body {
+    background-color: rgb(61, 61, 61);
+}
+p {
+ color:white;
+}
+img {
+    width:40%;
+    height: 40%;
+}
+.card_container {
+    width:90%;
+    height:60%;
+    background-color: grey;
+    display:grid;
+    grid-template-columns: repeat(3,1fr) ;
+    grid-template-rows: repeat(3,1fr);
+
+}
+.card {
+    background-color: rgb(58, 57, 57);
+    margin-right: 5%;
+    margin-bottom: 5%;
+    border-radius: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.card_info {
+    display:grid;
+    height:50%;
+    grid-template-columns: 1fr 2fr;;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    align-content: center
+
+}
