@@ -84,6 +84,39 @@ let createCardInfo = (number, info) => {
   carta.append(cardImage2, cartaText);
   cartaText.append(pNameIdentifier, pName, pIdIdentifier, pId);
 };
+
+let getPokemonInfo = (init, limit) => {
+  /**This function retrieves parts of the pokemon information to show in the 3x3 grid, using the name,image and id to show on the caption. */
+  fetch("/pokemons.json")
+    .then((response) => response.json())
+    .then((data) => {
+      let counter = 0;
+      let pokemonContainer = Array(9);
+      for (let i = init; i < limit; i++) {
+        const pokemon = data[i];
+        pokemonContainer[counter] = [
+          pokemon.ThumbnailImage,
+          pokemon.name,
+          pokemon.id,
+        ];
+        counter += 1;
+      }
+      createCardPack(pokemonContainer);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
+createCardPack = (pokemonPack) => {
+  //llama la info de los pokemones actuales, luego manda la info para crear una carta.
+  let i = 1;
+  for (count in pokemonPack) {
+    const p = pokemonPack[count];
+    let info = p;
+    createCardInfo(i, info);
+    i += 1;
+  }
+};
 let createModalInfo = (number, info) => {
   /**Esta función recibe un numero correspondiente al numero de la carta del html (del 1 al 9) y la información correspondiente.
    * Con el array info asigna la información de el poquemon relacionado a cada elemento designado.(ej name: bulbasaur u así para las otras propiedades.)
@@ -154,40 +187,6 @@ let createModalInfo = (number, info) => {
   cardi.appendChild(modal);
   modal.style.display = "flex";
 };
-
-let getPokemonInfo = (init, limit) => {
-  /**This function retrieves parts of the pokemon information to show in the 3x3 grid, using the name,image and id to show on the caption. */
-  fetch("/pokemons.json")
-    .then((response) => response.json())
-    .then((data) => {
-      let counter = 0;
-      let pokemonContainer = Array(9);
-      for (let i = init; i < limit; i++) {
-        console.log(i);
-        const pokemon = data[i];
-        pokemonContainer[counter] = [
-          pokemon.ThumbnailImage,
-          pokemon.name,
-          pokemon.id,
-        ];
-        counter += 1;
-      }
-      createCardPack(pokemonContainer);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-};
-createCardPack = (pokemonPack) => {
-  //llama la info de los pokemones actuales, luego manda la info para crear una carta.
-  let i = 1;
-  for (count in pokemonPack) {
-    const p = pokemonPack[count];
-    let info = p;
-    createCardInfo(i, info);
-    i += 1;
-  }
-};
 let getModalInfo = (cardId, position) => {
   /**creates a new instance of the pokemon class when a card is clicked, displaying all the information of the selected pokemon. */
   fetch("/pokemons.json")
@@ -254,21 +253,33 @@ let plusSlides = (m) => {
     showSlides(slideIndex += m);
 }
 let showSlides = (n) => {
+  
   fetch("/pokemons.json")
     .then((response) => response.json())
     .then((data) => {
-      if (n  > data.length - 9) {
-        slideIndex = 9;
+      console.log(data.length);
+      if (n  > data.length) {
+        slideIndex = 0;
+        n = 0;
       }
-      if (n -9 <= 0) {
+      if (n < 0) {
         slideIndex = data.length;
+        n = data.length - 9;
       }
+    supLimit = n + 9;
+    if(supLimit > data.length){
+      n = 0;
+      supLimit = n + 9;
+      
+    }
+    console.log("n = "+n + " and the slide index is "+slideIndex+" and the limit is "+supLimit);
+    getPokemonInfo(n, supLimit);
     })
     .catch((error) => {
       console.error(error);
     });
-    getPokemonInfo(n-9, n);
+    
 
 };
-let slideIndex = 9;
+let slideIndex = 0;
 showSlides(slideIndex);
