@@ -7,53 +7,37 @@
     <link href="/stylesheet.css" rel="stylesheet" />
   </head>
   <body>
+    <div class="search-bar-container">
+      <input type="text" id="search-bar" placeholder="Search...">
+      <!-- You can add a button here to perform the search -->
+    </div>
+    <div class="carousel">
+      <button id="prev_button" onclick="plusSlides(-9)">prev</button>
     <div class="card_container">
-      <div class="card" id="card_1">
-        <div class="modal" id="modal_1">
-          <div id="card_info_1" class="card_info"></div>
-        </div>
+      <button id="close_modals" type="button" onclick="removeModal()">x</button>
+      <div class="card" id="card_1" onclick="showModal(1)">
+        
       </div>
-      <div class="card" id="card_2">
-        <div class="modal"  id="modal_2">
-          <div id="card_info_2" class="card_info"></div>
-        </div>
+      <div class="card" id="card_2" onclick="showModal(2)">
+    
       </div>
-      <div class="card" id="card_3">
-        <div class="modal"  id="modal_3">
-          <div id="card_info_3" class="card_info"></div>
-        </div>
+      <div class="card" id="card_3" onclick="showModal(3)">
       </div>
-      <div class="card" id="card_4">
-        <div class="modal"  id="modal_4">
-          <div id="card_info_4" class="card_info"></div>
-        </div>
+      <div class="card" id="card_4" onclick="showModal(4)">
       </div>
-      <div class="card" id="card_5">
-        <div class="modal"  id="modal_5">
-        <div id="card_info_5" class="card_info"></div>
+      <div class="card" id="card_5" onclick="showModal(5)">
       </div>
+      <div class="card" id="card_6" onclick="showModal(6)">
       </div>
-      <div class="card" id="card_6">
-        <div class="modal"  id="modal_6">
-        <div id="card_info_6" class="card_info" ></div>
-        </div>
+      <div class="card" id="card_7" onclick="showModal(7)">
       </div>
-      <div class="card" id="card_7">
-        <div class="modal"  id="modal_7">
-        <div id="card_info_7" class="card_info"></div>
-        </div>
+      <div class="card" id="card_8" onclick="showModal(8)">
       </div>
-      <div class="card" id="card_8">
-        <div class="modal"  id="modal_8">
-        <div id="card_info_8" class="card_info"></div>
-    </div>
-      </div>
-      <div class="card" id="card_9">
-        <div class="modal"  id="modal_9">
-        <div id="card_info_9" class="card_info"></div>
-        </div>
+      <div class="card" id="card_9" onclick="showModal(9)">
       </div>
     </div>
+    <button id="next_button" onclick="plusSlides(+9)">Next</button>
+  </div>
     <script src="/script.js"></script>
   </body>
 </html>
