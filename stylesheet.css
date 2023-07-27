@@ -40,14 +40,19 @@ img {
     background-color: white;
     z-index: 2;
 }
+.searchSpan:hover {
+    font-size: large;
+    color:rgb(9, 76, 221);
+}
 
 .carousel {
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 70%;
-
 }
+    
+
 
 .card_container {
     margin-top: 2%;

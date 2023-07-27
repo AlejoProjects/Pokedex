@@ -284,18 +284,22 @@ let showSlides = (n) => {
 let slideIndex = 0;
 showSlides(slideIndex);
 let clearNames = () => {
-  setTimeout(() =>{
   let buscador = document.getElementById("resultados");
   buscador.innerHTML = "";
   buscador.display = "none";
-},1200);
+
 };
 
 let addName = (lName,ident,info) => {
   let searchDiv = document.getElementById("resultados");
   let psPan = document.createElement("span");
+  psPan.className = "searchSpan";
   psPan.id = "searchSpan"+ident;
   psPan.onclick = () =>{
+    clearNames();
+    let closeButton = document.getElementById("close_modals");
+    closeButton.style.display = "block";
+    document.getElementsByClassName("card_container")[0].disabled = true;
     getModalInfo(info.id,1);
     console.log("oh ma ga");
   };
@@ -306,9 +310,11 @@ let addName = (lName,ident,info) => {
   psPan.appendChild(searchP);
   searchDiv.appendChild(psPan);
 };
-let searchPokemon = () => {
-  clearNames();
+let searchPokemon = (s) => {
   let inputText = document.querySelector("#search-bar").value.toLowerCase();
+  if(s == 1){
+    clearNames();
+  }
   fetch("/pokemons.json")
     .then((response) => response.json())
     .then((data) => {
@@ -317,6 +323,8 @@ let searchPokemon = () => {
        for(i in data){
          names[i] = data[i].name.toLowerCase();
        }
+       const dataArr = new Set(names);
+       names = [...dataArr];
       //we test if there´s a match in any of the names on the array
        for(i in names){
           let resultado = false;
