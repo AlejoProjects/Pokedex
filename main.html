@@ -7,8 +7,9 @@
     <link href="/stylesheet.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="search-bar-container">
-      <input type="text" id="search-bar" placeholder="Search...">
+    <div class="search-bar-container" >
+      <input type="text" id="search-bar" placeholder="Search..." oninput="searchPokemon()" onblur="clearNames()">
+      <div id="resultados"></div>
       <!-- You can add a button here to perform the search -->
     </div>
     <div class="carousel">

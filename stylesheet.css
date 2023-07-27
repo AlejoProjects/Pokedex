@@ -1,6 +1,6 @@
 body {
     background-color: rgb(61, 61, 61);
-    display:flex;
+    display: flex;
     align-items: center;
     flex-direction: column;
 }
@@ -11,30 +11,44 @@ img {
     width: 40%;
     height: 40%;
 }
+
 .search-bar-container {
+    display: flex;
+    flex-direction: column;
     background-color: #f2f2f2;
     padding: 10px;
     position: block;
     top: 0;
     left: 0;
-    width: 100%;
-  /* Ensures the search bar is on top of other content */
-  }
-  
-  #search-bar {
-    width: 100%;
+    width: 50%;
+
+    /* Ensures the search bar is on top of other content */
+}
+
+#search-bar {
+    width: 95%;
     padding: 8px;
     font-size: 16px;
     border: none;
     border-radius: 5px;
-  }
+}
+
+#resultados {
+    display:none;
+    position: absolute;
+    top:9%;
+    background-color: white;
+    z-index: 2;
+}
+
 .carousel {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: center;
-    width:70%;
+    width: 70%;
 
 }
+
 .card_container {
     margin-top: 2%;
     width: 100%;
@@ -46,19 +60,22 @@ img {
     grid-template-rows: repeat(3, 1fr);
 
 }
+
 #close_modals {
-    display:none;
-    position:absolute;
-    margin-top:4%;
-    margin-left: 57%;;
+    display: none;
+    position: absolute;
+    margin-top: 4%;
+    margin-left: 57%;
+    ;
     border-radius: 90px;
-    width:30px;
-    height:30px;
-    border-style:none;
-    color:antiquewhite;
-    background-color:rgb(212, 78, 78) ;
-    z-index:2;
+    width: 30px;
+    height: 30px;
+    border-style: none;
+    color: antiquewhite;
+    background-color: rgb(212, 78, 78);
+    z-index: 2;
 }
+
 .card {
     background-color: rgb(58, 57, 57);
     margin-right: 5%;
@@ -68,8 +85,8 @@ img {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height:65%;
-    width:60%;
+    height: 65%;
+    width: 60%;
 }
 
 .card_info {
@@ -77,18 +94,18 @@ img {
     padding: 20px;
     border: 1px solid #888;
     /* Could be more or less, depending on screen size */
-    width:50%;
+    width: 50%;
     display: grid;
     height: 50%;
-    grid-template-columns:  1fr 2fr;
-    grid-template-rows:  1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     align-content: center
 }
 
 .card_text {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    color:white;
+    color: white;
 
 }
 
@@ -112,26 +129,28 @@ img {
     background-color: rgb(0, 0, 0);
     /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
- 
+
     /* Black w/ opacity */
-  
+
     justify-content: space-around
 }
 
 .modal_conainer {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #a8a8a8;
     border-radius: 90px;
-    margin-top: 3%;;
-    margin-left:23%;
-    margin-right:25%;
-    height:70%;
+    margin-top: 3%;
+    ;
+    margin-left: 23%;
+    margin-right: 25%;
+    height: 70%;
     width: 30%;
-    
+
 }
+
 .card_modal_image {
-    scale:inherit;
+    scale: inherit;
 }

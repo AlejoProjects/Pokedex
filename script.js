@@ -194,7 +194,7 @@ let getModalInfo = (cardId, position) => {
     .then((data) => {
       console.log(cardId);
 
-      counter = 1;
+      counter = 0;
       while (data[counter].id != cardId) {
         counter += 1;
       }
@@ -283,3 +283,72 @@ let showSlides = (n) => {
 };
 let slideIndex = 0;
 showSlides(slideIndex);
+let clearNames = () => {
+  setTimeout(() =>{
+  let buscador = document.getElementById("resultados");
+  buscador.innerHTML = "";
+  buscador.display = "none";
+},1200);
+};
+
+let addName = (lName,ident,info) => {
+  let searchDiv = document.getElementById("resultados");
+  let psPan = document.createElement("span");
+  psPan.id = "searchSpan"+ident;
+  psPan.onclick = () =>{
+    getModalInfo(info.id,1);
+    console.log("oh ma ga");
+  };
+  let searchP = document.createElement("P");
+  let textNode = document.createTextNode(lName);
+  searchDiv.style.display = "block";
+  searchP.appendChild(textNode);
+  psPan.appendChild(searchP);
+  searchDiv.appendChild(psPan);
+};
+let searchPokemon = () => {
+  clearNames();
+  let inputText = document.querySelector("#search-bar").value.toLowerCase();
+  fetch("/pokemons.json")
+    .then((response) => response.json())
+    .then((data) => {
+      let names = Array(data.length);
+      //add pokemon names on an array
+       for(i in data){
+         names[i] = data[i].name.toLowerCase();
+       }
+      //we test if there´s a match in any of the names on the array
+       for(i in names){
+          let resultado = false;
+          let pokemon = data[i];
+          let localName = names[i];
+          let info  = new pokemones(
+            pokemon.name,
+            pokemon.abilities,
+            pokemon.weight,
+            pokemon.height,
+            pokemon.weakness[0],
+            pokemon.ThumbnailImage,
+            pokemon.id
+          );
+        for(let j = 0;j < inputText.length;j++){
+         if(localName[j] == inputText[j]){
+            resultado = true;
+            }
+         else{
+          resultado = false;
+          break;
+         }
+        }
+        if(resultado == true){
+          //if the current input is the same as part of a name or the totallity of it, the name is added
+          addName(localName,i,info);
+  
+        }      
+       }
+  
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};
