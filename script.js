@@ -293,7 +293,7 @@ showSlides(slideIndex);
 let clearNames = () => {
   let buscador = document.getElementById("resultados");
   buscador.innerHTML = "";
-  buscador.display = "none";
+  buscador.style.display = "none";
 
 };
 

@@ -1,5 +1,12 @@
+:root{
+--bgr : #9E5C00;
+--cards-container: #00619E;
+--inside-shadow:rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+--light-blue:#0090EB;
+--light-orange: #EB8901;
+}
 body {
-    background-color: rgb(61, 61, 61);
+    background-color: var(--bgr);
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -12,55 +19,84 @@ img {
     height: 40%;
 }
 
+::placeholder {
+    color: white;
+  }
 .search-bar-container {
     display: flex;
     flex-direction: column;
-    background-color: #f2f2f2;
+    box-shadow: var(--inside-shadow);
+    background-color:  var(--cards-container);
+    justify-content: center;
     padding: 10px;
     position: block;
     top: 0;
     left: 0;
     width: 50%;
+    height: 20px;
+   
 
     /* Ensures the search bar is on top of other content */
 }
 
 #search-bar {
     width: 95%;
+    height: 50%;;
     padding: 8px;
     font-size: 16px;
     border: none;
     border-radius: 5px;
+    background-color: var(--light-blue);
+    color:white;
 }
 
 #resultados {
     display:none;
     position: absolute;
+    width: 20%;
+    max-height: 50%;;
     top:9%;
     background-color: white;
     z-index: 2;
+    overflow-y: scroll;
 }
 .searchSpan:hover {
     font-size: large;
     color:rgb(9, 76, 221);
 }
-
+#prev_button,#next_button {
+   background-color: #00619e00;
+   border-style: none;
+    color:white;
+    font-size: 50px;
+}
+#prev_button:hover,#next_button:hover {
+    color:#0090EB;
+}
 .carousel {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    block-size: fit-content;
+    margin-top:0.5%;
     width: 70%;
+    height:30%;
+    overflow: calc();
 }
     
 
 
 .card_container {
-    margin-top: 2%;
+    
     width: 100%;
-    height: 50%;
-    background-color: grey;
+    height: 500px;
+    background-color: var(--cards-container);
+    box-shadow: var(--inside-shadow);
     display: grid;
     justify-items: center;
+    align-items: start;
+    padding-top:1%;
+    padding-bottom: 1%;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
 
@@ -69,8 +105,8 @@ img {
 #close_modals {
     display: none;
     position: absolute;
-    margin-top: 4%;
-    margin-left: 57%;
+    margin-top: -5%;
+    margin-left: 35%;
     ;
     border-radius: 90px;
     width: 30px;
@@ -82,18 +118,24 @@ img {
 }
 
 .card {
-    background-color: rgb(58, 57, 57);
+    background-color:var(--light-blue);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    border-style: solid;
+    border-color:var(--light-orange);
+    border-width: 0.5px;
     margin-right: 5%;
-    margin-bottom: 5%;
-    border-radius: 80px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    height: 65%;
+    height: 75%;
     width: 60%;
 }
-
+.card:hover {
+    box-shadow: var(--inside-shadow);
+    border-radius: 5px;
+    
+}
 .card_info {
     /* 15% from the top and centered */
     padding: 20px;
@@ -145,17 +187,23 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #a8a8a8;
-    border-radius: 90px;
+    background-color: var(--light-blue);
+    border-style: solid;
+    border-color: var(--light-orange);
+    border-width: 0.5px;
+    box-shadow: var(--inside-shadow);
     margin-top: 3%;
     ;
     margin-left: 23%;
     margin-right: 25%;
     height: 70%;
-    width: 30%;
+    width: 45%;
 
 }
-
+.card_info {
+    border-style: none;
+    color:white;
+}
 .card_modal_image {
     scale: inherit;
 }
