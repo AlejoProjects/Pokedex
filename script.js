@@ -1,15 +1,19 @@
 class pokemones {
-  constructor(tname, tabilities, tweight, theight, tweakness, timage, tid) {
+  constructor(tname, tabilities, tweight, theight, tweakness, timage, tid,ttype) {
     this.name = tname;
     this.abilities = tabilities;
     this.weight = tweight;
     this.height = theight;
     this.weakness = tweakness;
     this.image = timage;
+    this.type = ttype;
     this.id = tid;
   }
   get rname() {
     return this.name;
+  }
+  get ttype() {
+    return this.type;
   }
   get rid() {
     return this.id;
@@ -33,7 +37,9 @@ class pokemones {
   set rname(n) {
     this.name = n;
   }
-
+  set ttype(tt){
+    this.ttype = tt;
+  }
   set rabilities(ab) {
     this.abilities = ab;
   }
@@ -98,6 +104,7 @@ let getPokemonInfo = (init, limit) => {
           pokemon.ThumbnailImage,
           pokemon.name,
           pokemon.id,
+          pokemon.type
         ];
         counter += 1;
       }
@@ -125,7 +132,6 @@ let createModalInfo = (number, info) => {
   let modal = document.createElement("div");
   let modalDiv = document.createElement("div");
   let cardInfo = document.createElement("div");
-  let closeModal = document.getElementById("close_modals");
   //let closeModal = document.createElement("button");
   let cardImage = document.createElement("img");
   //se añaden las clases
@@ -168,7 +174,7 @@ let createModalInfo = (number, info) => {
   pAbility.innerHTML = info.abilities;
   pWeight.innerHTML = info.weight;
   pHeight.innerHTML = info.height;
-  pType.innerHTML = info.pType;
+  pType.innerHTML = info.type;
   //añadimos la info de las cartas a el contenedor que las contiene.
   cardInfo.append(
     pNameIdentifier,
@@ -206,7 +212,8 @@ let getModalInfo = (cardId, position) => {
         pokemon.height,
         pokemon.weakness[0],
         pokemon.ThumbnailImage,
-        pokemon.id
+        pokemon.id,
+        pokemon.type
       );
       console.log(modalContainer);
       createModalInfo(position, modalContainer);
