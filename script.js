@@ -116,7 +116,7 @@ let getPokemonInfo = (init, limit) => {
     });
 };
 createCardPack = (pokemonPack) => {
-  //llama la info de los pokemones actuales, luego manda la info para crear una carta.
+  //This function creates the 9 current cards your currently looking based on their id.
   let i = 1;
   for (count in pokemonPack) {
     const p = pokemonPack[count];
@@ -257,10 +257,11 @@ let removeModal = () => {
   }
 };
 let plusSlides = (m) => {
+  /**This function adds or subtracts 9 positions to the carousel display and then shows them using showSlides() */
     showSlides(slideIndex += m);
 }
 let showSlides = (n) => {
-  
+ /**This function displays the pokems from the position n to n + 9 on the carousel moreover it also resets the pokemon display when you reach the upper or lower limit of the pokemon list */ 
   fetch("/pokemons.json")
     .then((response) => response.json())
     .then((data) => {
@@ -290,7 +291,9 @@ let showSlides = (n) => {
 };
 let slideIndex = 0;
 showSlides(slideIndex);
+/**Search bar section */
 let clearNames = () => {
+  /**ClearNames cleans the results displayed when typing in the search bar and hides the container */
   let buscador = document.getElementById("resultados");
   buscador.innerHTML = "";
   buscador.style.display = "none";
@@ -298,6 +301,7 @@ let clearNames = () => {
 };
 
 let addName = (lName,ident) => {
+  /**addName() creates and option on the results panel wich is goung to show it's corresponding modal when clicked */
   let searchDiv = document.getElementById("resultados");
   let psPan = document.createElement("button");
   psPan.classList.add('searchSpan','nest-btn', 'primary');
@@ -318,6 +322,7 @@ let addName = (lName,ident) => {
   searchDiv.appendChild(psPan);
 };
 let searchPokemon = (s) => {
+  /**Search pokemon gathers the results that match best the typed input on the search bar, based on the similarites with the input and the names. */
   let inputText = document.querySelector("#search-bar").value.toLowerCase();
   
   fetch("/pokemons.json")
