@@ -1,3 +1,5 @@
+@import "./node_modules/nes.css/css/nes.css";
+/*variable names to use in the project*/
 :root{
 --bgr : #9E5C00;
 --cards-container: #00619E;
@@ -5,27 +7,35 @@
 --light-blue:#0090EB;
 --light-orange: #EB8901;
 }
+/*The background image and other config*/
 body {
-    background-color: var(--bgr);
+    background-image:url('/background.png') ;
+    background-size:70%;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-
-
-
-img {
-    width: 40%;
-    height: 40%;
+/*Pixel font used in the project*/
+html, body, pre, code, kbd, samp,p,span,button,.card,.modal {
+    font-family: "Press Start 2P",sans-serif;
 }
 
+
+/*card images by default*/
+img {
+    width: 50%;
+    height: 60%;
+}
+/*Color of the text in the search bar*/
 ::placeholder {
     color: white;
   }
+/*Elements referring to the search bar section*/
 .search-bar-container {
     display: flex;
     flex-direction: column;
     box-shadow: var(--inside-shadow);
+    border-radius: 50px;;
     background-color:  var(--cards-container);
     justify-content: center;
     padding: 10px;
@@ -33,7 +43,7 @@ img {
     top: 0;
     left: 0;
     width: 50%;
-    height: 20px;
+    height: 25px;
    
 
     /* Ensures the search bar is on top of other content */
@@ -41,7 +51,7 @@ img {
 
 #search-bar {
     width: 95%;
-    height: 50%;;
+    height: 60%;;
     padding: 8px;
     font-size: 16px;
     border: none;
@@ -53,25 +63,36 @@ img {
 #resultados {
     display:none;
     position: absolute;
-    width: 20%;
+    width: 40%;
     max-height: 50%;;
-    top:9%;
+    top:3.5%;
+    border-radius: 10px;
     background-color: white;
     z-index: 2;
     overflow-y: scroll;
+}
+.searchSpan {
+    width: 100%;
 }
 .searchSpan:hover {
     font-size: large;
     color:rgb(9, 76, 221);
 }
+/*THIS SECTION REFERRS TO EVERY ELEMENT ON THE CAROUSEL*/
 #prev_button,#next_button {
-   background-color: #00619e00;
-   border-style: none;
+    background-color: var(--light-blue);
     color:white;
     font-size: 50px;
+    height: 50%;
+    margin-top:20%;
+    margin-left: 2%;
+    margin-right: 2%;
+    border-style: solid;
 }
 #prev_button:hover,#next_button:hover {
-    color:#0090EB;
+    color:var(--light-orange);
+
+ 
 }
 .carousel {
     display: flex;
@@ -89,7 +110,7 @@ img {
 .card_container {
     
     width: 100%;
-    height: 500px;
+    height: 550px;
     background-color: var(--cards-container);
     box-shadow: var(--inside-shadow);
     display: grid;
@@ -105,7 +126,7 @@ img {
 #close_modals {
     display: none;
     position: absolute;
-    margin-top: -5%;
+    margin-top: 3%;
     margin-left: 35%;
     ;
     border-radius: 90px;
@@ -120,16 +141,24 @@ img {
 .card {
     background-color:var(--light-blue);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-    border-style: solid;
-    border-color:var(--light-orange);
-    border-width: 0.5px;
     margin-right: 5%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     height: 75%;
-    width: 60%;
+    width: 80%;
+    
+}
+.pId {
+    background-color:var(--light-blue);
+    color:white;
+    width:30%;
+    text-align: center;
+    position: absolute;
+    margin-top:-15%;
+    margin-left: -50%;
+    border-radius: 10px;
 }
 .card:hover {
     box-shadow: var(--inside-shadow);

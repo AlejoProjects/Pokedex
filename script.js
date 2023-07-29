@@ -64,13 +64,14 @@ let createCardInfo = (number, info) => {
   try{
     const cardim = document.getElementById("cardim"+number);
     const cartaText2 = document.getElementById("card_text_"+number);
+    const cartaId = document.getElementById("id_"+number);
+    carta.removeChild( cartaId);
     carta.removeChild(cardim);
     carta.removeChild(cartaText2);
 } catch{console.log("no te preocupes aun no existen los elementos")};
   let cartaText = document.createElement("div");
   cartaText.id ="card_text_"+ number;
   cartaText.className = "card_text";
-  
   let cardImage2 = document.createElement("img");
   cardImage2.className = "card_image";
   cardImage2.id = "cardim"+number;
@@ -78,17 +79,17 @@ let createCardInfo = (number, info) => {
   const pNameIdentifier = document.createElement("p");
   const pIdIdentifier = document.createElement("p");
   const nodeId1 = document.createTextNode("Name:");
-  const nodeId2 = document.createTextNode("Id:");
   pNameIdentifier.appendChild(nodeId1);
-  pIdIdentifier.appendChild(nodeId2);
   let pName = document.createElement("p");
   let pId = document.createElement("p");
   pId.id = "id_" + number;
   pName.innerHTML = info[1];
-  pId.innerHTML = info[2];
+  pId.innerHTML = "#"+info[2];
+  pName.id = "name_"+number;
+  pId.classList.add('title','pId');
   cardImage2.className = "card_image";
-  carta.append(cardImage2, cartaText);
-  cartaText.append(pNameIdentifier, pName, pIdIdentifier, pId);
+  carta.append(pId,cardImage2, cartaText);
+  cartaText.append(pNameIdentifier, pName);
 };
 
 let getPokemonInfo = (init, limit) => {
@@ -193,15 +194,14 @@ let createModalInfo = (number, info) => {
   cardi.appendChild(modal);
   modal.style.display = "flex";
 };
-let getModalInfo = (cardId, position) => {
+let getModalInfo = (namer, position) => {
   /**creates a new instance of the pokemon class when a card is clicked, displaying all the information of the selected pokemon. */
   fetch("/pokemons.json")
     .then((response) => response.json())
     .then((data) => {
-      console.log(cardId);
 
       counter = 0;
-      while (data[counter].id != cardId) {
+      while (data[counter].name.toLowerCase() != namer) {
         counter += 1;
       }
       const pokemon = data[counter];
@@ -229,11 +229,11 @@ let showModal = (pos) => {
    * using getModalInfo(cardId,pos);
    */
   try {
-    let cardId = document.getElementById("id_" + pos).innerHTML;
+    let namel = document.getElementById("name_" + pos).innerHTML;
     let closeButton = document.getElementById("close_modals");
     closeButton.style.display = "block";
     document.getElementsByClassName("card_container")[0].disabled = true;
-    getModalInfo(cardId, pos);
+    getModalInfo(namel.toLowerCase(), pos);
   } catch (error) {
     console.error(error);
   }
@@ -297,18 +297,18 @@ let clearNames = () => {
 
 };
 
-let addName = (lName,ident,info) => {
+let addName = (lName,ident) => {
   let searchDiv = document.getElementById("resultados");
-  let psPan = document.createElement("span");
-  psPan.className = "searchSpan";
+  let psPan = document.createElement("button");
+  psPan.classList.add('searchSpan','nest-btn', 'primary');
   psPan.id = "searchSpan"+ident;
   psPan.onclick = () =>{
-    clearNames();
     let closeButton = document.getElementById("close_modals");
     closeButton.style.display = "block";
     document.getElementsByClassName("card_container")[0].disabled = true;
-    getModalInfo(info.id,1);
-    console.log("oh ma ga");
+    console.log("sapo "+lName);
+    getModalInfo(lName,1);
+    clearNames();
   };
   let searchP = document.createElement("P");
   let textNode = document.createTextNode(lName);
@@ -319,9 +319,7 @@ let addName = (lName,ident,info) => {
 };
 let searchPokemon = (s) => {
   let inputText = document.querySelector("#search-bar").value.toLowerCase();
-  if(s == 1){
-    clearNames();
-  }
+  
   fetch("/pokemons.json")
     .then((response) => response.json())
     .then((data) => {
@@ -366,4 +364,7 @@ let searchPokemon = (s) => {
     .catch((error) => {
       console.error(error);
     });
+    if(s == 1){
+      clearNames();
+    }
 };
