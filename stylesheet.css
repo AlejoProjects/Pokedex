@@ -6,7 +6,13 @@
 --inside-shadow:rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 --light-blue:#0090EB;
 --light-orange: #EB8901;
+--color-primary:#0090EB ;
+--color-secondary: #009e5f;
+--color-tertiary: #41aef2;
+--color-quaternary: #2c2f31;
+--color-quinary:  black;
 }
+
 /*The background image and other config*/
 body {
     background-image:url('/background.png') ;
@@ -26,13 +32,92 @@ img {
     width: 50%;
     height: 60%;
 }
+#intro {
+    margin-top:15%;
+    border-color: var(--color-primary);
+    border-radius: 25px;
+}
+#intro_button {
+    margin-left: 40%;
+}
+.text-shadows {
+    text-shadow: 3px 3px 0 var(--color-secondary), 6px 6px 0 var(--color-tertiary),
+      9px 9px var(--color-quaternary), 12px 12px 0 var(--color-quinary);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: calc(2rem + 5vw);
+    text-align: center;
+    margin: 0;
+    color: var(--color-primary);
+    animation: shadows 1.2s ease-in infinite;
+    letter-spacing: 0.4rem;
+  }
+  
+  @keyframes shadows {
+    0% {
+      text-shadow: none;
+    }
+    10% {
+      transform: translate(-3px, -3px);
+      text-shadow: 3px 3px 0 var(--color-secondary);
+    }
+    20% {
+      transform: translate(-6px, -6px);
+      text-shadow: 3px 3px 0 var(--color-secondary),
+        6px 6px 0 var(--color-tertiary);
+    }
+    30% {
+      transform: translate(-9px, -9px);
+      text-shadow: 3px 3px 0 var(--color-secondary),
+        6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary);
+    }
+    40% {
+      transform: translate(-12px, -12px);
+      text-shadow: 3px 3px 0 var(--color-secondary),
+        6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
+        12px 12px 0 var(--color-quinary);
+    }
+    50% {
+      transform: translate(-12px, -12px);
+      text-shadow: 3px 3px 0 var(--color-secondary),
+        6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
+        12px 12px 0 var(--color-quinary);
+    }
+    60% {
+      text-shadow: 3px 3px 0 var(--color-secondary),
+        6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary),
+        12px 12px 0 var(--color-quinary);
+    }
+    70% {
+      text-shadow: 3px 3px 0 var(--color-secondary),
+        6px 6px 0 var(--color-tertiary), 9px 9px var(--color-quaternary);
+    }
+    80% {
+      text-shadow: 3px 3px 0 var(--color-secondary),
+        6px 6px 0 var(--color-tertiary);
+    }
+    90% {
+      text-shadow: 3px 3px 0 var(--color-secondary);
+    }
+    100% {
+      text-shadow: none;
+    }
+  }
+  
+  /*
+    --color-primary: #5192ED;
+    --color-secondary: #69A1F0;
+    --color-tertiary: #7EAEF2;
+    --color-quaternary: #90BAF5;
+    --color-quinary: #A2C4F5;
+  */
 /*Color of the text in the search bar*/
 ::placeholder {
     color: white;
   }
 /*Elements referring to the search bar section*/
 .search-bar-container {
-    display: flex;
+    display: none;
     flex-direction: column;
     box-shadow: var(--inside-shadow);
     border-radius: 50px;;
@@ -95,7 +180,7 @@ img {
  
 }
 .carousel {
-    display: flex;
+    display: none;
     flex-direction: row;
     justify-content: center;
     block-size: fit-content;
@@ -237,6 +322,15 @@ img {
 .card_modal_image {
     scale: inherit;
 }
+/*Colors depending on the element*/
+.fire{
+
+}
+.water{
+
+}
+
+/*Media queries*/
 @media(1100px < width < 1240px) {
     p {
         font-size:15px;

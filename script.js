@@ -56,6 +56,16 @@ class pokemones {
     this.image = im;
   }
 }
+let start = () => {
+  main = document.querySelector("body");
+  carrousel = document.getElementsByClassName("carousel")[0];
+  searchbar = document.getElementsByClassName("search-bar-container")[0];
+  intro = document.getElementById("intro");
+  main.removeChild(intro);
+  carrousel.style.display = "flex";
+  searchbar.style.display = "flex";
+ 
+}
 let createCardInfo = (number, info) => {
   /**The function create card info, includes some information of each pokemon showed on the 9x9 grid, ready to be fully displayed when any of the 9 cards are clicked.
    */

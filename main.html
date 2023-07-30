@@ -9,6 +9,10 @@
     <link href="/stylesheet.css" rel="stylesheet" />
   </head>
   <body>
+    <div id="intro" class="nes-container is-rounded">
+      <h1 class="text-shadows">Pokedex</h1>
+      <button id="intro_button" class="nes-btn is-success" type="button" onclick="start()">begin</button>
+    </div>
     <div class="search-bar-container">
       <input type="text" id="search-bar" placeholder="Search..." oninput="searchPokemon(1)" onfocus="searchPokemon(0)">
       <div id="resultados"></div>
