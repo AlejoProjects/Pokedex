@@ -1,4 +1,4 @@
-**Project README: Web Portfolio Showcase**
+**Pokedex Project**
 
 
 ## What's the Project About
