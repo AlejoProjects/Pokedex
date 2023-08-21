@@ -1,5 +1,6 @@
+  
 **Pokedex Project**
-
+<img src='./'>
 
 ## What's the Project About
 
