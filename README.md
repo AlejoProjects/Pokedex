@@ -7,7 +7,7 @@
 
 The Pokedex Showcase is a personal project aimed at creating a visually appealing and functional pokedex whie retreiving information from a local API using Html, css ,javascript and Ness.css
 
-## Functionality
+<h2>Usage</h2>
 
 1. **Home Page:** A beautiful introduction to the pokedex application
 2. **Card_carrousel:** The main matrix that displays a 3x3 pokemon list, with a searchbar on the top where you can find any pokemon you want
@@ -30,6 +30,6 @@ The Pokedex Showcase is a personal project aimed at creating a visually appealin
    npm install
    ```
 `
-</article>
 
-4. **Access the Portfolio:**  use live server for easy accsess
+
+4. **Access the Portfolio:** display the webpage on your preferred browser
