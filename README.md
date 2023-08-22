@@ -1,5 +1,6 @@
-  
-**Pokedex Project**
+<article class="markdown-body entry-content container-lg" itemprop="text"><h1 tabindex="-1" dir="auto">
+
+<h1>Pokedex Project</h1>
 <br>
 <img src='previews/preview2.png' style="width:70%;">
 ## What's the Project About
@@ -29,5 +30,6 @@ The Pokedex Showcase is a personal project aimed at creating a visually appealin
    npm install
    ```
 `
+</article>
 
 4. **Access the Portfolio:**  use live server for easy accsess
