@@ -1,7 +1,6 @@
   
 **Pokedex Project**
-<img src='previews/preview1.png'>
-<img src='previews/preview2.png'>
+<img src='previews/preview2.png' style="width:50%;">
 ## What's the Project About
 
 The Pokedex Showcase is a personal project aimed at creating a visually appealing and functional pokedex whie retreiving information from a local API using Html, css ,javascript and Ness.css
