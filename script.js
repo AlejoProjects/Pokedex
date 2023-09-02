@@ -1,3 +1,7 @@
+/*
+*The pokemon class represents a pokemon with all it´s abilities and characteristics
+*@constructor
+*/
 class pokemones {
   constructor(tname, tabilities, tweight, theight, tweakness, timage, tid,ttype) {
     this.name = tname;
@@ -66,9 +70,10 @@ let start = () => {
   searchbar.style.display = "flex";
  
 }
-let createCardInfo = (number, info) => {
-  /**The function create card info, includes some information of each pokemon showed on the 9x9 grid, ready to be fully displayed when any of the 9 cards are clicked.
+  /** The function create card info, includes some information of each pokemon showed on the 9x9 grid, ready to be fully displayed when any of the 9 cards are clicked.
    */
+let createCardInfo = (number, info) => {
+
   
   let carta = document.getElementById("card_" + number);
   try{
@@ -101,9 +106,9 @@ let createCardInfo = (number, info) => {
   carta.append(pId,cardImage2, cartaText);
   cartaText.append(pNameIdentifier, pName);
 };
-
+  /**The getPokemonInfo function retrieves parts of the pokemon information to show in the 3x3 grid, using the name,image and id to show on the caption. */
 let getPokemonInfo = (init, limit) => {
-  /**This function retrieves parts of the pokemon information to show in the 3x3 grid, using the name,image and id to show on the caption. */
+
   fetch("/pokemons.json")
     .then((response) => response.json())
     .then((data) => {
@@ -125,8 +130,9 @@ let getPokemonInfo = (init, limit) => {
       console.error(error);
     });
 };
+ /** The createCardPack function creates the 9 current cards your currently looking based on their id.*/
 createCardPack = (pokemonPack) => {
-  //This function creates the 9 current cards your currently looking based on their id.
+ 
   let i = 1;
   for (count in pokemonPack) {
     const p = pokemonPack[count];
@@ -136,8 +142,9 @@ createCardPack = (pokemonPack) => {
   }
 };
 let createModalInfo = (number, info) => {
-  /**Esta función recibe un numero correspondiente al numero de la carta del html (del 1 al 9) y la información correspondiente.
-   * Con el array info asigna la información de el poquemon relacionado a cada elemento designado.(ej name: bulbasaur u así para las otras propiedades.)
+  /**The createModalInfo receives a number corresponding to the html card from 1 to 9 and all the corresponding info.
+   *With the array info asigns the information from the related pokemon to each designated element(example. Name: bulbasaur,...)
+   * 
    */
   let cardi = document.querySelector("body");
   let modal = document.createElement("div");
@@ -204,8 +211,9 @@ let createModalInfo = (number, info) => {
   cardi.appendChild(modal);
   modal.style.display = "flex";
 };
+  /**The getModalInfo function creates a new instance of the pokemon class when a card is clicked, displaying all the information of the selected pokemon. */
 let getModalInfo = (namer, position) => {
-  /**creates a new instance of the pokemon class when a card is clicked, displaying all the information of the selected pokemon. */
+  
   fetch("/pokemons.json")
     .then((response) => response.json())
     .then((data) => {
@@ -233,11 +241,11 @@ let getModalInfo = (namer, position) => {
       console.log("no se encontro la info del modal");
     });
 };
-
-let showModal = (pos) => {
   /**The function showModal shows the selected card when clicking on it by retreiveing the information
    * using getModalInfo(cardId,pos);
    */
+let showModal = (pos) => {
+
   try {
     let namel = document.getElementById("name_" + pos).innerHTML;
     let closeButton = document.getElementById("close_modals");
@@ -248,10 +256,11 @@ let showModal = (pos) => {
     console.error(error);
   }
 };
-let removeModal = () => {
   /**The function removeModal, deletes the current modal in order to return to the main menu.
    * by also hiding the closing button.
    */
+let removeModal = () => {
+
   {
     try {
       console.log("sapo");
@@ -266,12 +275,13 @@ let removeModal = () => {
     }
   }
 };
+ /**The plusSlides function adds or subtracts 9 positions to the carousel display and then shows them using showSlides() */
 let plusSlides = (m) => {
-  /**This function adds or subtracts 9 positions to the carousel display and then shows them using showSlides() */
+ 
     showSlides(slideIndex += m);
 }
+ /**The showSlides function displays the pokems from the position n to n + 9 on the carousel moreover it also resets the pokemon display when you reach the upper or lower limit of the pokemon list */ 
 let showSlides = (n) => {
- /**This function displays the pokems from the position n to n + 9 on the carousel moreover it also resets the pokemon display when you reach the upper or lower limit of the pokemon list */ 
   fetch("/pokemons.json")
     .then((response) => response.json())
     .then((data) => {
@@ -301,17 +311,17 @@ let showSlides = (n) => {
 };
 let slideIndex = 0;
 showSlides(slideIndex);
-/**Search bar section */
+//Search bar section 
+/**ClearNames cleans the results displayed when typing in the search bar and hides the container */
 let clearNames = () => {
-  /**ClearNames cleans the results displayed when typing in the search bar and hides the container */
   let buscador = document.getElementById("resultados");
   buscador.innerHTML = "";
   buscador.style.display = "none";
 
 };
-
+/**addName() creates and option on the results panel wich is goung to show it's corresponding modal when clicked */
 let addName = (lName,ident) => {
-  /**addName() creates and option on the results panel wich is goung to show it's corresponding modal when clicked */
+
   let searchDiv = document.getElementById("resultados");
   let psPan = document.createElement("button");
   psPan.classList.add('searchSpan','nest-btn', 'primary');
@@ -331,8 +341,8 @@ let addName = (lName,ident) => {
   psPan.appendChild(searchP);
   searchDiv.appendChild(psPan);
 };
+ /**Search pokemon gathers the results that match best the typed input on the search bar, based on the similarites with the input and the names. */
 let searchPokemon = (s) => {
-  /**Search pokemon gathers the results that match best the typed input on the search bar, based on the similarites with the input and the names. */
   let inputText = document.querySelector("#search-bar").value.toLowerCase();
   
   fetch("/pokemons.json")
